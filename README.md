@@ -3,7 +3,7 @@
 
 Add tab text color changes for the PagerSlidingTabStrip view when the current tab is selected.
 
-![Screenshot](https://github.com/androidzhaoxiaogang/enhance-PagerSlidingTabStripsample/blob/master/sample.png)
+![Screenshot](https://github.com/androidzhaoxiaogang/enhance-PagerSlidingTabStripsample/blob/master/sample.png?raw=true)
 
 ##Usage
 
