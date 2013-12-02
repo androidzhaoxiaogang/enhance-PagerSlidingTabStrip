@@ -12,6 +12,9 @@ tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
 tabs.setTextSelectColorResource(R.color.tab_color);
 ``` 
 
+The details you can check the enhance-PagerSlidingTabStrip library sample from https://github.com/androidzhaoxiaogang/enhance-PagerSlidingTabStripsample .
+
+
 ## Contributors
-Zhao xiaogang
+* Zhao xiaogang-zxgangandy@gmail.com
 
