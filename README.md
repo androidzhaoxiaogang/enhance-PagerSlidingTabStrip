@@ -16,5 +16,5 @@ The details you can check the enhance-PagerSlidingTabStrip library sample from h
 
 
 ## Contributors
-* Zhao xiaogang-zxgangandy@gmail.com
+* [Zhao xiaogang](zxgangandy@gmail.com) - <zxgangandy@gmail.com>
 
