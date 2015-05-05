@@ -135,7 +135,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 		tabTextSize = a.getDimensionPixelSize(0, tabTextSize);
 		tabTextColor = a.getColor(1, tabTextColor);
-		tabTextSelectColor = a.getColor(1, tabTextSelectColor);
+		// tabTextSelectColor = a.getColor(1, tabTextSelectColor);
 
 		a.recycle();
 
@@ -143,17 +143,18 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 		a = context.obtainStyledAttributes(attrs, R.styleable.PagerSlidingTabStrip);
 
-		indicatorColor = a.getColor(R.styleable.PagerSlidingTabStrip_indicatorColor, indicatorColor);
-		underlineColor = a.getColor(R.styleable.PagerSlidingTabStrip_underlineColor, underlineColor);
-		dividerColor = a.getColor(R.styleable.PagerSlidingTabStrip_dividerColor, dividerColor);
-		indicatorHeight = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_indicatorHeight, indicatorHeight);
-		underlineHeight = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_underlineHeight, underlineHeight);
-		dividerPadding = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_dividerPadding, dividerPadding);
-		tabPadding = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_tabPaddingLeftRight, tabPadding);
-		tabBackgroundResId = a.getResourceId(R.styleable.PagerSlidingTabStrip_tabBackground, tabBackgroundResId);
-		shouldExpand = a.getBoolean(R.styleable.PagerSlidingTabStrip_shouldExpand, shouldExpand);
-		scrollOffset = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_scrollOffset, scrollOffset);
-		textAllCaps = a.getBoolean(R.styleable.PagerSlidingTabStrip_textAllCaps, textAllCaps);
+		indicatorColor = a.getColor(R.styleable.PagerSlidingTabStrip_psts_indicatorColor, indicatorColor);
+		underlineColor = a.getColor(R.styleable.PagerSlidingTabStrip_psts_underlineColor, underlineColor);
+		dividerColor = a.getColor(R.styleable.PagerSlidingTabStrip_psts_dividerColor, dividerColor);
+		tabTextSelectColor = a.getColor(R.styleable.PagerSlidingTabStrip_psts_tabTextSelectColor, tabTextSelectColor);
+		indicatorHeight = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_psts_indicatorHeight, indicatorHeight);
+		underlineHeight = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_psts_underlineHeight, underlineHeight);
+		dividerPadding = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_psts_dividerPadding, dividerPadding);
+		tabPadding = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_psts_tabPaddingLeftRight, tabPadding);
+		tabBackgroundResId = a.getResourceId(R.styleable.PagerSlidingTabStrip_psts_tabBackground, tabBackgroundResId);
+		shouldExpand = a.getBoolean(R.styleable.PagerSlidingTabStrip_psts_shouldExpand, shouldExpand);
+		scrollOffset = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_psts_scrollOffset, scrollOffset);
+		textAllCaps = a.getBoolean(R.styleable.PagerSlidingTabStrip_psts_textAllCaps, textAllCaps);
 
 		a.recycle();
 
@@ -224,7 +225,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 				currentPosition = pager.getCurrentItem();
 				scrollToChild(currentPosition, 0);
-				updateTabTextStyles();
+				updateTabTextStyles(0);
 			}
 		});
 
@@ -400,7 +401,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 			currentPosition = position;
 			currentPositionOffset = positionOffset;
 			
-			updateTabTextStyles();
+			updateTabTextStyles(positionOffset);
 
 			scrollToChild(position, (int) (positionOffset * tabsContainer.getChildAt(position).getWidth()));
 
@@ -431,7 +432,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 	}
 	
-	private void updateTabTextStyles() {
+	private void updateTabTextStyles(float positionOffset) {
 
 		for (int i = 0; i < tabCount; i++) {
 
@@ -439,7 +440,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
 
 			if (v instanceof TextView) {
 				TextView tab = (TextView) v;
-				if(i == currentPosition) {
+				if((i == currentPosition && positionOffset <= 0.5) || (i == currentPosition && positionOffset > 0.5)) {
 					tab.setTextColor(tabTextSelectColor);
 				} else {
 					tab.setTextColor(tabTextColor);
